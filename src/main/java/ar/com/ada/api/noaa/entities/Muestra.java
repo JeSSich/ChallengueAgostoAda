@@ -1,96 +1,90 @@
-package ar.com.ada.api.empleados.entities;
-
+package ar.com.ada.api.noaa.entities;
 import java.math.BigDecimal;
 import java.util.*;
-
 import javax.persistence.*;
 
 @Entity
-@Table (name = "empleado")
-public class Empleado {
-    @Column (name = "empleado_id")
+@Table (name = "muestra")
+public class Muestra {
+    @Column (name = "muestra_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int empleadoId;
-    private String nombre;
-    private int edad;
-    private BigDecimal sueldo;
-    private Date fechaAlta;
-    private Date fechaBaja;
-    // no lo tratamos como objeto por eso la anotation es column 
-    @Column(name = "estado_id")
-    private int estadoId;
+    private int muestraId;
+    private String matriculaEmbarcacion;
+    private double longitud;
+    private double latitud; 
+    private Date horarioMuestra;
+    private double alturaMar;
+    
+  
     // siempre que haya FK y los tratemos como objetos será utilizado el JoinColumn en una clase y en la otra mappedBy  
-    @JoinColumn(name = "categoria_id", referencedColumnName = "categoria_id")
+    @JoinColumn(name = "boya_id", referencedColumnName = "boya_id")
     @ManyToOne
-    private Categoria categoria;
+    private Boya boya;
 
-    public int getEmpleadoId() {
-        return empleadoId;
+    public int getMuestraId() {
+        return muestraId;
     }
 
-    public void setEmpleadoId(int empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setMuestraId(int muestraId) {
+        this.muestraId = muestraId;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getMatriculaEmbarcacion() {
+        return matriculaEmbarcacion;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setMatriculaEmbarcacion(String matriculaEmbarcacion) {
+        this.matriculaEmbarcacion = matriculaEmbarcacion;
     }
 
-    public int getEdad() {
-        return edad;
+    public double getLongitud() {
+        return longitud;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
     }
 
-    public BigDecimal getSueldo() {
-        return sueldo;
+    public double getLatitud() {
+        return latitud;
     }
 
-    public void setSueldo(BigDecimal sueldoBase) {
-        this.sueldo = sueldoBase;
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
     }
 
-    public Date getFechaAlta() {
-        return fechaAlta;
+    public double getAlturaMar() {
+        return alturaMar;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
-        this.fechaAlta = fechaAlta;
+    public void setAlturaMar(double alturaMar) {
+        this.alturaMar = alturaMar;
     }
 
-    public Date getFechaBaja() {
-        return fechaBaja;
+
+   
+    public Date getHorarioMuestra() {
+        return horarioMuestra;
     }
 
-    public void setFechaBaja(Date fechaBaja) {
-        this.fechaBaja = fechaBaja;
+    public void setHorarioMuestra(Date horarioMuestra) {
+        this.horarioMuestra = horarioMuestra;
     }
 
-    public int getEstadoId() {
-        return estadoId;
+    
+
+
+    public Boya getBoya() {
+        return boya;
     }
 
-    public void setEstadoId(int estadoId) {
-        this.estadoId = estadoId;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setBoya(Boya boya) {
+        this.boya = boya;
         // por el ManyToOne
         // a la lista de empleados va a agregarle el obj
         // devuelve la lista de empleados de la categoria actual y me agrega a mí mismo (o sea, a categoria)
-        this.categoria.getEmpleados().add(this);
+        this.boya.getMuestras().add(this);
     }
 
     

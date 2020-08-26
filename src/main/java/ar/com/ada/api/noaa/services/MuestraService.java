@@ -5,27 +5,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.com.ada.api.empleados.entities.Empleado;
-import ar.com.ada.api.empleados.repos.EmpleadoRepo;
+import ar.com.ada.api.noaa.entities.Muestra;
+import ar.com.ada.api.noaa.repos.MuestraRepo;
 
 @Service
-public class EmpleadoService {
+public class MuestraService {
     @Autowired
-    private EmpleadoRepo repo;
+    private MuestraRepo repo;
 
-    public void crearEmpleado(Empleado empleado){
-        grabar(empleado);
+    public void crearMuestra(Muestra muestra){
+        grabar(muestra);
     }
 
-    public List<Empleado> obtenerEmpleados(){
+    public List<Muestra> obtenerMuestras(){
         return repo.findAll();
     }
 
-	public Empleado obtenerPorId(int id) {
+	public Muestra obtenerPorId(int id) {
 		return repo.findById(id);
 	}
     
-    public void grabar(Empleado empleada){
-        repo.save(empleada);
+    public void grabar(Muestra muestra){
+        repo.save(muestra);
     }
 }

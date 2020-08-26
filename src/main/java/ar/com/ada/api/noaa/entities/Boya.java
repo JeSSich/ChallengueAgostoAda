@@ -1,63 +1,65 @@
-package ar.com.ada.api.empleados.entities;
-
+package ar.com.ada.api.noaa.entities;
 import java.math.BigDecimal;
 import java.util.*;
-
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "categoria")
-public class Categoria {
-    @Column(name = "categoria_id")
+@Table(name = "boya")
+public class Boya {
+    @Column(name = "boya_id")
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int categoriaId;
-    private String nombre;
-    @Column(name = "sueldo_base")
-    private BigDecimal sueldoBase;
-    // OneToMany la clase categoria va de una a muchas en empleado, va a aparecer varias veces una misma categoria
-    // mappedBy como voy a referenciarme al obj categoria pero desde el punto de vista empleado, "categoria" 
-    // indica que le va a dar bola al atributo categoria  que tenga el obj empleado, nombre del atributo en el obj (atributo categoria
-    // en el obj empleado), se tiene que llamar "categoria" el atributo en la clase Empleado (sino no lo va a encontrar)
-    // cascade, si traemos desde el repo un obj categoria el cascadeType.All va a traer todos los empleados 
-    // fetch, obliga que traiga a todos de una, no se suele utilizar, es por fines educativos, se suele usar LAZY
-    @OneToMany (mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    // Ignora ese atributo cuando front lo manda
-    @JsonIgnore
-    private List<Empleado> empleados = new ArrayList<>();
+    private int idBoya;
+    private String color;
+    @Column(name = "color_boya")
+    private double longitudInstalacion;
+    private double latitudtudInstalacion;
+    
+   
+    @OneToMany (mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   
+    //@JsonIgnore
+    private List<Muestra> muestras = new ArrayList<>();
 
-    public int getCategoriaId() {
-        return categoriaId;
+    public int getBoyaId() {
+        return idBoya;
     }
 
-    public void setCategoriaId(int categoriaId) {
-        this.categoriaId = categoriaId;
+    public void setBoyaId(int idBoya) {
+        this.idBoya = idBoya;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getColor() {
+        return color;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public BigDecimal getSueldoBase() {
-        return sueldoBase;
+    public double getlongitudInstalacion() {
+        return longitudInstalacion;
     }
 
-    public void setSueldoBase(BigDecimal sueldoBase) {
-        this.sueldoBase = sueldoBase;
+    public void longitudInstalacion(double longitudInstalacion) {
+        this.longitudInstalacion = longitudInstalacion;
+    }
+    public double getlatitudInstalacion() {
+        return latitudInstalacion;
+    }
+
+    public void latitudInstalacion(double latitudInstalacion) {
+        this.latitudInstalacion = latitudInstalacion;
 	}
 
-    public List<Empleado> getEmpleados() {
-        return empleados;
+
+    public List<Muestra> getMuestras() {
+        return muestras;
     }
 
-    public void setEmpleados(List<Empleado> empleados) {
-        this.empleados = empleados;
+    public void setMuestras(List<Muestra> muestras) {
+        this.muestars = muestras;
     }
     
 }

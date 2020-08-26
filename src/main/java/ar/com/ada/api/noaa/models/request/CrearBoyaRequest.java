@@ -1,5 +1,7 @@
-package ar.com.ada.api.clima.models.request;
+package ar.com.ada.api.noaa.models.request;
 
-public class PaisActualizarNombreRequest {
-    public String nombre;
+public class CrearBoyaRequest {
+    public double longitudInstalacion;
+    public double latitudInstalacion;
+
 }
