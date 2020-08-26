@@ -4,9 +4,9 @@ public class RegistrarMuestraRequest {
     public int boyaId;
     public Date horarioMuestra;
     public String matriculaEmbarcacion;
-    private double longitud;
-    private double latitud;
-    private double alturaMar; 
+    public double longitud;
+    public double latitud;
+    public double alturaMar; 
 
 
 }

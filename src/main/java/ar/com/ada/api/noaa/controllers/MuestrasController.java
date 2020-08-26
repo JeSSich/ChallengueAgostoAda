@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.noaa.entities.Muestra;
 import ar.com.ada.api.noaa.models.request.InfoEmpleadaRequest;
+import ar.com.ada.api.noaa.models.request.RegistrarMuestraRequest;
 import ar.com.ada.api.noaa.models.request.SueldoModifRequest;
 import ar.com.ada.api.noaa.models.response.GenericResponse;
 import ar.com.ada.api.noaa.services.*;
@@ -28,12 +29,13 @@ public class MuestrasController {
     MuestrasService boyasService;
 
     @PostMapping("/muestras")
-    public ResponseEntity<?> crearMuestra(@RequestBody InfoMuestraRequest info){
+    public ResponseEntity<?> crearMuestra(@RequestBody RegistrarMuestraRequest info){
         Muestra muestra = new Muestra();      
         muestra.setMuestraId(muestraId);
         muestra.setMatriculaEmbarcacion(info.matriculaEmbarcacion);
-        muestra.setlongitud(info.longitud);
-        muestra.setlatitud(info.latitud);
+        muestra.setLatitud(info.latitud);
+        muestra.setLongitud(info.longitud);
+   
         muestra.setAlturaMar(info.setAlturaMar);
         muestra.sethorarioMuestra(new Date());
         muestra.setBoya(boyaService.obtenerPorId(info.boyaId));
