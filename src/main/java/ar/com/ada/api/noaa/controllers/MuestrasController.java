@@ -39,7 +39,7 @@ public class MuestrasController {
         muestra.setAlturaMar(info.setAlturaMar);
         muestra.sethorarioMuestra(new Date());
         muestra.setBoya(boyaService.obtenerPorId(info.boyaId));
-        muestraService.crearMuestra(muestra);
+        muestraService.grabarMuestra(muestra);
         GenericResponse gR = new GenericResponse();
         gR.isOk = true;
         gR.id = muestra.getMuestraId();
