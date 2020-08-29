@@ -19,7 +19,7 @@ public class Boya {
    
     @OneToMany (mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    
-    //@JsonIgnore
+    @JsonIgnore
     private List<Muestra> muestras = new ArrayList<>();
 
     public int getBoyaId() {
